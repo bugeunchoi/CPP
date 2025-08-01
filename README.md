@@ -1,2 +1,2 @@
 # CS
-Study logs on Computer science
+Study logs on computer science
