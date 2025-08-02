@@ -1,2 +1,2 @@
-# CS
+# CPP
 Study logs on CPP
