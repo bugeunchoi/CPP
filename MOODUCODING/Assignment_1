@@ -1,0 +1,106 @@
+#include <iostream>
+
+typedef struct Animal {
+
+	char name[30];
+	int age;
+	int health;
+	int hungry;
+	int clean;
+
+}Animal;
+
+
+void create_animal(Animal* animal) {
+
+	std::cout << "name: ";
+	std::cin >> animal->name;
+
+	std::cout << "age: ";
+	std::cin >> animal->age;
+
+	animal->health = 100;
+	animal->hungry = 100;
+	animal->clean = 100;
+}
+
+void animal_condition(Animal* animal) {
+
+	std::cout << "health: ";
+	std::cin >> animal->health;
+
+	std::cout << "hungry: ";
+	std::cin >> animal->hungry;
+
+	std::cout << "clean: ";
+	std::cin >> animal->clean;
+}
+
+void animal_condition_check(Animal* animal) {
+
+	std::cout << "이름: " << animal->name << std::endl;
+	std::cout << "나이: " << animal->age << std::endl;
+	std::cout << "건강: " << animal->health << std::endl;
+	std::cout << "허기: " << animal->hungry << std::endl;
+	std::cout << "청결: " << animal->clean << std::endl;
+}
+
+int main() {
+
+	Animal* list[10];
+	int select_animal_idx = 0;
+	int animal_num = 0;
+	int select;
+
+
+	for (;;) {
+		std::cout << "[1]동물 생성" << std::endl;
+		std::cout << "[2]동물 상태 입력/변경" << std::endl;
+		std::cout << "[3]동물 정보 보기" << std::endl;
+		std::cout << "[4]종료" << std::endl;
+
+
+		std::cin >> select;
+
+		if (select < 1 || select > 5) {
+			std::cout << "잘못 선택하였습니다." << std::endl;
+		}
+
+		switch (select) {
+
+		case 1:
+
+			if (animal_num >= 10) std::cout << "동물 입력칸이 꽉 찼습니다." << std::endl; continue;
+
+			list[animal_num] = new Animal;
+			create_animal(list[animal_num]);
+			animal_num++;
+			break;
+
+		case 2:
+			std::cout << "animal idx : ";
+			std::cin >> select_animal_idx;
+
+			if (select_animal_idx >= 10 || select_animal_idx <= 0) std::cout << "동물이 없습니다." << std::endl; continue;
+
+			animal_condition(list[select_animal_idx]);
+			break;
+
+
+		case 3:
+			std::cout << "animal idx : ";
+			std::cin >> select_animal_idx;
+			animal_condition_check(list[select_animal_idx]);
+			break;
+
+
+		case 4:
+			for (int i = 0; i < 10; i++) {
+				delete list[i];
+			}
+			return 0;
+
+
+		}
+	}
+}
